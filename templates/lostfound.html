@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lost & Found</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h2>Post Lost or Found Item</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    Name: <input type="text" name="name" required><br><br>
+    Category:
+    <select name="category" required>
+        <option value="School">School</option>
+        <option value="College">College</option>
+        <option value="Office">Office</option>
+        <option value="Hostel">Hostel</option>
+        <option value="Apartment">Apartment</option>
+    </select><br><br>
+    Item: <input type="text" name="item" required><br><br>
+    Description: <input type="text" name="description" required><br><br>
+    Image: <input type="file" name="image"><br><br>
+    <button type="submit">Submit</button>
+</form>
+
+<h2>All Posts</h2>
+
+{% for row in data %}
+<div class="card">
+    <b>{{ row[1] }}</b> ({{ row[2] }}) <br>
+    Item: {{ row[3] }} <br>
+    Description: {{ row[4] }} <br>
+
+    {% if row[5] %}
+        <img src="{{ url_for('static', filename='uploads/' + row[5]) }}" width="200">
+    {% endif %}
+</div>
+<hr>
+{% endfor %}
+
+<a href="/">Back to Home</a>
+
+</body>
+</html>
