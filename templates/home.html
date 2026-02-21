@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Community Development System</title>
+    <title>Community Platform - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-    <h1>Community Development System</h1>
-
-    <a href="/lostfound">Lost & Found</a><br><br>
-    <a href="/complaint">Complaints</a><br><br>
-    <a href="/help">Help & Sharing</a>
-
+<body class="home">
+    <div style="text-align: right; padding: 20px;">
+        <span style="color: white; font-weight: bold;">Welcome, {{ username }}!</span>
+        <a href="{{ url_for('logout') }}" style="margin-left: 20px; color: white; text-decoration: none; background: #f44336; padding: 8px 15px; border-radius: 5px; font-weight: bold;">Logout</a>
+    </div>
+    
+    <h1 class="home-title">Community Platform</h1>
+    <p style="font-size: 18px; color: #333;">Select a service to continue:</p>
+    
+    <div class="menu">
+        <a href="{{ url_for('lostfound') }}">Lost & Found</a>
+        <a href="{{ url_for('complaint') }}">Complaints</a>
+        <a href="{{ url_for('help_page') }}">Help & Sharing</a>
+    </div>
 </body>
 </html>

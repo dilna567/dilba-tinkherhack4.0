@@ -2,27 +2,55 @@
 <html>
 <head>
     <title>Help & Sharing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="home">
+    <div style="text-align: right; padding: 20px;">
+        <span style="color: white; font-weight: bold;">Welcome, {{ session.get('username') }}!</span>
+        <a href="{{ url_for('logout') }}" style="margin-left: 20px; color: white; text-decoration: none; background: #f44336; padding: 8px 15px; border-radius: 5px; font-weight: bold;">Logout</a>
+        <a href="{{ url_for('home') }}" style="margin-left: 10px; color: white; text-decoration: none; background: #4CAF50; padding: 8px 15px; border-radius: 5px; font-weight: bold;">Home</a>
+    </div>
 
-<h2>Ask for Help / Share Notes</h2>
+    <h1 class="home-title">Help & Sharing</h1>
 
-<form method="POST">
-    Name: <input type="text" name="name"><br><br>
-    Message: <input type="text" name="message"><br><br>
-    <button type="submit">Submit</button>
-</form>
+    <!-- Form to request help -->
+    <div style="width: 60%; margin: 30px auto; background: #fff9c4; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px gray;">
+        <h3 style="color: maroon;">Ask for Help or Share</h3>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="{{ category }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="POST" enctype="multipart/form-data">
+            <label>Your Name:</label><br>
+            <input type="text" name="name" required><br><br>
+            
+            <label>Message/Request:</label><br>
+            <textarea name="help_text" rows="5" required></textarea><br><br>
+            
+            <label>Attach File (optional):</label><br>
+            <input type="file" name="share_file"><br><br>
+            
+            <button type="submit">Post Message</button>
+        </form>
+    </div>
 
-<h2>All Help Posts</h2>
-
-{% for row in data %}
-<p>
-<b>{{ row[1] }}</b> - {{ row[2] }}
-</p>
-<hr>
-{% endfor %}
-
-<a href="/">Back to Home</a>
-
+    <!-- Display help messages -->
+    <h3 style="text-align: center; color: maroon; margin-top: 30px;">Community Help & Sharing</h3>
+    {% if data %}
+        {% for help_msg in data %}
+            <div class="card">
+                <b>{{ help_msg[1] }}</b>
+                <p>{{ help_msg[3] }}</p>
+                {% if help_msg[4] %}
+                    <small><a href="{{ url_for('static', filename='uploads/' + help_msg[4]) }}" target="_blank">📎 Download File</a></small>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align: center; color: gray;">No messages yet. Be the first to share!</p>
+    {% endif %}
 </body>
 </html>

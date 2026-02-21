@@ -2,27 +2,55 @@
 <html>
 <head>
     <title>Complaints</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="home">
+    <div style="text-align: right; padding: 20px;">
+        <span style="color: white; font-weight: bold;">Welcome, {{ session.get('username') }}!</span>
+        <a href="{{ url_for('logout') }}" style="margin-left: 20px; color: white; text-decoration: none; background: #f44336; padding: 8px 15px; border-radius: 5px; font-weight: bold;">Logout</a>
+        <a href="{{ url_for('home') }}" style="margin-left: 10px; color: white; text-decoration: none; background: #4CAF50; padding: 8px 15px; border-radius: 5px; font-weight: bold;">Home</a>
+    </div>
 
-<h2>Submit Complaint</h2>
+    <h1 class="home-title">File a Complaint</h1>
 
-<form method="POST">
-    Name: <input type="text" name="name"><br><br>
-    Issue: <input type="text" name="issue"><br><br>
-    <button type="submit">Submit</button>
-</form>
+    <!-- Form to post a complaint -->
+    <div style="width: 60%; margin: 30px auto; background: #fff9c4; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px gray;">
+        <h3 style="color: maroon;">Submit a Complaint</h3>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="{{ category }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="POST" enctype="multipart/form-data">
+            <label>Your Name:</label><br>
+            <input type="text" name="name" required><br><br>
+            
+            <label>Issue/Complaint:</label><br>
+            <textarea name="issue" rows="5" required></textarea><br><br>
+            
+            <label>Image (optional):</label><br>
+            <input type="file" name="image" accept="image/*"><br><br>
+            
+            <button type="submit">Submit Complaint</button>
+        </form>
+    </div>
 
-<h2>All Complaints</h2>
-
-{% for row in data %}
-<p>
-<b>{{ row[1] }}</b> - {{ row[2] }}
-</p>
-<hr>
-{% endfor %}
-
-<a href="/">Back to Home</a>
-
+    <!-- Display complaints -->
+    <h3 style="text-align: center; color: maroon; margin-top: 30px;">Recent Complaints</h3>
+    {% if data %}
+        {% for complaint in data %}
+            <div class="card">
+                <b>{{ complaint[1] }}</b>
+                <p>{{ complaint[3] }}</p>
+                {% if complaint[4] %}
+                    <img src="{{ url_for('static', filename='uploads/' + complaint[4]) }}" alt="Issue Image">
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align: center; color: gray;">No complaints yet.</p>
+    {% endif %}
 </body>
 </html>

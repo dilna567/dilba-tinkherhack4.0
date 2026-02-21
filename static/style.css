@@ -1,0 +1,163 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Landing Page */
+.auth-container {
+    width: 400px;
+    background: #d2b48c;
+    margin: 100px auto;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.auth-container h1 {
+    color: maroon;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.auth-container p {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
+    border: none;
+}
+
+.btn-login {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: #45a049;
+}
+
+.btn-signup {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-signup:hover {
+    background-color: #e53935;
+}
+
+/* Login page */
+.login-box {
+    width: 350px;
+    background: #d2b48c; /* light brown */
+    margin: 100px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.login-box h2 {
+    color: maroon;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.login-box input {
+    width: 90%;
+    padding: 8px;
+    margin: 5px 0 15px 0;
+    border-radius: 5px;
+    border: 1px solid #555;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+}
+
+/* Home Page */
+body.home {
+    background: gold;
+    text-align: center;
+}
+
+h1.home-title {
+    font-family: "Georgia", serif;
+    color: maroon;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.menu a {
+    display: inline-block;
+    margin: 20px;
+    padding: 20px 30px;
+    border-radius: 10px;
+    background-color: #f44336;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    background-color: #e53935;
+}
+
+/* Cards for posts */
+.card {
+    width: 60%;
+    margin: 20px auto;
+    background: #fff9c4;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+    text-align: left;
+}
+
+.card img {
+    max-width: 200px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.card b {
+    color: #d32f2f;
+}

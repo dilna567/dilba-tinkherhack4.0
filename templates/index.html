@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Community Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="auth-container">
+        <h1>Community Platform</h1>
+        <p>Welcome! Choose an option to get started:</p>
+        
+        <div class="auth-buttons">
+            <a href="{{ url_for('login') }}" class="btn btn-login">Login</a>
+            <a href="{{ url_for('signup') }}" class="btn btn-signup">Sign Up</a>
+        </div>
+    </div>
+</body>
+</html>

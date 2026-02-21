@@ -4,42 +4,74 @@
     <title>Lost & Found</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="home">
+    <div style="text-align: right; padding: 20px;">
+        <span style="color: white; font-weight: bold;">Welcome, {{ session.get('username') }}!</span>
+        <a href="{{ url_for('logout') }}" style="margin-left: 20px; color: white; text-decoration: none; background: #f44336; padding: 8px 15px; border-radius: 5px; font-weight: bold;">Logout</a>
+        <a href="{{ url_for('home') }}" style="margin-left: 10px; color: white; text-decoration: none; background: #4CAF50; padding: 8px 15px; border-radius: 5px; font-weight: bold;">Home</a>
+    </div>
 
-<h2>Post Lost or Found Item</h2>
+    <h1 class="home-title">Lost & Found</h1>
 
-<form method="POST" enctype="multipart/form-data">
-    Name: <input type="text" name="name" required><br><br>
-    Category:
-    <select name="category" required>
-        <option value="School">School</option>
-        <option value="College">College</option>
-        <option value="Office">Office</option>
-        <option value="Hostel">Hostel</option>
-        <option value="Apartment">Apartment</option>
-    </select><br><br>
-    Item: <input type="text" name="item" required><br><br>
-    Description: <input type="text" name="description" required><br><br>
-    Image: <input type="file" name="image"><br><br>
-    <button type="submit">Submit</button>
-</form>
+    <!-- Form to post a new item -->
+    <div style="width: 60%; margin: 30px auto; background: #fff9c4; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px gray;">
+        <h3 style="color: maroon;">Post an Item</h3>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="{{ category }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="POST" enctype="multipart/form-data">
+            <label>Your Name:</label><br>
+            <input type="text" name="name" required><br><br>
+            
+            <label>Category:</label><br>
+            <select name="category" required>
+                <option value="">Select Category</option>
+                <option value="School">School</option>
+                <option value="College">College</option>
+                <option value="Office">Office</option>
+                <option value="Hostel">Hostel</option>
+                <option value="Apartment">Apartment</option>
+            </select><br><br>
+            
+            <label>Type:</label><br>
+            <select name="type_item" required>
+                <option value="">Select Type</option>
+                <option value="Lost">Lost</option>
+                <option value="Found">Found</option>
+            </select><br><br>
+            
+            <label>Item Name:</label><br>
+            <input type="text" name="item" required><br><br>
+            
+            <label>Description:</label><br>
+            <textarea name="description" rows="4" required></textarea><br><br>
+            
+            <label>Image (optional):</label><br>
+            <input type="file" name="image" accept="image/*"><br><br>
+            
+            <button type="submit">Post Item</button>
+        </form>
+    </div>
 
-<h2>All Posts</h2>
-
-{% for row in data %}
-<div class="card">
-    <b>{{ row[1] }}</b> ({{ row[2] }}) <br>
-    Item: {{ row[3] }} <br>
-    Description: {{ row[4] }} <br>
-
-    {% if row[5] %}
-        <img src="{{ url_for('static', filename='uploads/' + row[5]) }}" width="200">
+    <!-- Display items -->
+    <h3 style="text-align: center; color: maroon; margin-top: 30px;">All Items</h3>
+    {% if data %}
+        {% for item in data %}
+            <div class="card">
+                <b>{{ item[1] }}</b> ({{ item[3] }})
+                <br><small style="color: gray;">Category: {{ item[2] }}</small>
+                <p>{{ item[5] }}</p>
+                {% if item[6] %}
+                    <img src="{{ url_for('static', filename='uploads/' + item[6]) }}" alt="Item Image">
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align: center; color: gray;">No items posted yet.</p>
     {% endif %}
-</div>
-<hr>
-{% endfor %}
-
-<a href="/">Back to Home</a>
-
 </body>
 </html>
