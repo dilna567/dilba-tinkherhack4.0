@@ -5,7 +5,8 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.secret_key = "supersecretkey"  # Needed for login sessions
+# Use environment variable for secret key, fallback to dev key
+app.secret_key = os.getenv('SECRET_KEY', 'dev-key-change-in-production')
 
 UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = {'png','jpg','jpeg','gif','pdf'}
@@ -223,4 +224,8 @@ def help_page():
     return render_template("help.html", data=data)
 
 if __name__=="__main__":
-    app.run(debug=True)
+    # Use environment variables; default to localhost:5000 for development
+    host = os.getenv('HOST', '0.0.0.0')
+    port = int(os.getenv('PORT', 5000))
+    debug = os.getenv('FLASK_ENV') == 'development'
+    app.run(host=host, port=port, debug=debug)
