@@ -1,0 +1,58 @@
+{
+  "name": "community-platform",
+  "version": "1.0.0",
+  "description": "A comprehensive community platform for sharing lost items, complaints, and help requests",
+  "main": "app.py",
+  "type": "module",
+  "author": "TinkerHub",
+  "license": "MIT",
+  "homepage": "https://github.com/yourusername/dilba-tinkherhack4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/dilba-tinkherhack4.0.git"
+  },
+  "keywords": [
+    "community",
+    "platform",
+    "lost-and-found",
+    "complaints",
+    "help",
+    "flask",
+    "python",
+    "sqlite"
+  ],
+  "scripts": {
+    "start": "python app.py",
+    "dev": "python app.py",
+    "prod": "gunicorn -w 4 -b 0.0.0.0:5000 app:app",
+    "test": "pytest",
+    "lint": "pylint app.py"
+  },
+  "engines": {
+    "python": ">=3.7"
+  },
+  "dependencies": {
+    "Flask": "2.3.0",
+    "werkzeug": "2.3.0"
+  },
+  "devDependencies": {
+    "pytest": "7.0.0",
+    "pytest-flask": "1.2.0"
+  },
+  "optionalDependencies": {
+    "gunicorn": "20.1.0",
+    "python-dotenv": "0.21.0"
+  },
+  "directories": {
+    "templates": "./templates",
+    "static": "./static",
+    "uploads": "./static/uploads"
+  },
+  "files": [
+    "app.py",
+    "templates/",
+    "static/",
+    "README.md",
+    "LICENSE"
+  ]
+}

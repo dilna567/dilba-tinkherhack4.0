@@ -1,0 +1,48 @@
+{
+  "app": {
+    "name": "Community Platform",
+    "version": "1.0.0",
+    "description": "A comprehensive community platform for sharing lost items, complaints, and help requests",
+    "debug": true,
+    "host": "localhost",
+    "port": 5000
+  },
+  "database": {
+    "type": "sqlite3",
+    "path": "community.db",
+    "auto_init": true
+  },
+  "uploads": {
+    "folder": "static/uploads",
+    "allowed_extensions": [
+      "png",
+      "jpg",
+      "jpeg",
+      "gif",
+      "pdf"
+    ],
+    "max_file_size_mb": 16
+  },
+  "security": {
+    "secret_key": "change-this-in-production",
+    "password_min_length": 6,
+    "session_timeout_minutes": 30
+  },
+  "features": {
+    "lost_and_found": true,
+    "complaints": true,
+    "help_and_sharing": true,
+    "user_profiles": false,
+    "real_time_chat": false,
+    "notifications": false
+  },
+  "categories": {
+    "lost_found": [
+      "School",
+      "College",
+      "Office",
+      "Hostel",
+      "Apartment"
+    ]
+  }
+}

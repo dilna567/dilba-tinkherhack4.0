@@ -1,0 +1,106 @@
+{
+  "project": {
+    "name": "Community Platform",
+    "codename": "dilba-tinkherhack4.0",
+    "version": "1.0.0",
+    "status": "active",
+    "type": "web-application"
+  },
+  "organization": {
+    "name": "TinkerHub",
+    "website": "https://tinkerhub.in"
+  },
+  "repository": {
+    "url": "https://github.com/yourusername/dilba-tinkherhack4.0",
+    "branch": "main",
+    "type": "git"
+  },
+  "technology_stack": {
+    "backend": {
+      "language": "Python",
+      "framework": "Flask",
+      "version": "2.3+"
+    },
+    "frontend": {
+      "languages": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "template_engine": "Jinja2"
+    },
+    "database": {
+      "type": "SQLite",
+      "version": "3",
+      "tables": [
+        "users",
+        "lostfound",
+        "complaint",
+        "help"
+      ]
+    }
+  },
+  "features": [
+    {
+      "name": "User Authentication",
+      "status": "completed",
+      "description": "Secure sign-up and login with password hashing"
+    },
+    {
+      "name": "Lost & Found",
+      "status": "completed",
+      "description": "Post and view lost/found items with images"
+    },
+    {
+      "name": "Complaints",
+      "status": "completed",
+      "description": "File and manage community complaints"
+    },
+    {
+      "name": "Help & Sharing",
+      "status": "completed",
+      "description": "Request help and share resources"
+    },
+    {
+      "name": "User Profiles",
+      "status": "planned",
+      "description": "User profile pages and management"
+    },
+    {
+      "name": "Direct Messaging",
+      "status": "planned",
+      "description": "Real-time chat between users"
+    }
+  ],
+  "deployment": {
+    "environments": [
+      {
+        "name": "development",
+        "url": "http://localhost:5000"
+      },
+      {
+        "name": "production",
+        "platforms": [
+          "Heroku",
+          "AWS",
+          "Google Cloud",
+          "DigitalOcean"
+        ]
+      }
+    ]
+  },
+  "contributors": [
+    {
+      "role": "Developer"
+    },
+    {
+      "role": "Designer"
+    },
+    {
+      "role": "PM"
+    }
+  ],
+  "license": "MIT",
+  "created_date": "2024-02-21",
+  "last_updated": "2024-02-21"
+}

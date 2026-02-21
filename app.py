@@ -4,12 +4,6 @@ import sqlite3
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 
-"""
-Community Platform Application
-A Flask-based web application for community members to connect, share information,
-and support each other through lost & found postings, complaint management, and help requests.
-"""
-
 app = Flask(__name__)
 app.secret_key = "supersecretkey"  # Needed for login sessions
 
@@ -22,15 +16,10 @@ if not os.path.exists(UPLOAD_FOLDER):
 
 # ---------- Helper ----------
 def allowed_file(filename):
-    """Check if the uploaded file has an allowed extension."""
     return '.' in filename and filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSIONS
 
 # ---------- Database ----------
 def init_db():
-    """
-    Initialize the SQLite database with required tables.
-    Creates tables for users, lost & found items, complaints, and help requests.
-    """
     conn = sqlite3.connect("community.db")
     c = conn.cursor()
 
